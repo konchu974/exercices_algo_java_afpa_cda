@@ -5,6 +5,7 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
 
+
 /**
  * The type Application.
  */
@@ -509,12 +510,42 @@ public class Application {
     }
 
     public static String camelCase(String str){
-        String strInCamelCase ="";
 
         for (int i = 0; i < str.length(); i++) {
-            if (Character.isWhitespace(str.charAt(i))){
+
+            if (String.valueOf(str.charAt(i)).matches("\\W")){
+
+                str = str.replaceFirst("\\W", "" + Character.toUpperCase(str.charAt(i + 1)));
+                str = str.substring(0, i+1) + str.substring(i + 2);
+
             }
+
         }
+
+        return str;
     }
 
+    public static int[] findChar(String chaineRef, String motATrouver){
+
+        int index2 = -1;
+        int index1 = -1;
+        if (chaineRef.indexOf(motATrouver) !=-1) {
+            index2 = (chaineRef.indexOf(motATrouver));
+            index1 = (chaineRef.indexOf(motATrouver)+(motATrouver.length()-1));
+        }
+        int[] resultIndex = new int[] {index1, index2};
+        return resultIndex;
+    }
+
+    public static int binaireToBase(int n){
+        String tabToConvert = Integer.toString(n);
+        for (int i = 0; i < tabToConvert.length(); i++) {
+            if (Character.getNumericValue(tabToConvert.charAt(i)) == 1){
+
+            }else{
+
+            }
+
+        }
+    }
 }

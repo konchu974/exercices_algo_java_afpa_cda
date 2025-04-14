@@ -182,6 +182,23 @@ class ApplicationTest {
         assertEquals(".apmys tse'c noitammargorp aL", result);
     }
 
+    @Test
+    void testCamelCaseFunction(){
+        String result = Application.camelCase("hello world je suis steve");
+        assertEquals("helloWorldJeSuisSteve", result);
+    }
+
+    @Test
+    void testFindCharResultFunction(){
+        int[] result1 = Application.findChar("Mon nom est Personne.", "Personne");
+        assertArrayEquals(new int[] {19, 12}, result1);
+
+        int[] result2 = Application.findChar("Il n'y a rien par ici", "pas");
+        assertArrayEquals(new int[] {-1, -1}, result2);
+
+
+    }
+
 
 
 
