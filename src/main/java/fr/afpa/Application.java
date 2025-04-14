@@ -587,7 +587,7 @@ public class Application {
         }
         testPal = testPal.toLowerCase();
         comparePal = comparePal.toLowerCase();
-        if (comparePal == testPal){
+        if (comparePal.equals(testPal)){
             result = true;
         }else{
             result = false;
