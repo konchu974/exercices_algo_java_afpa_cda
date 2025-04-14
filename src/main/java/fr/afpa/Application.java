@@ -1,6 +1,7 @@
 package fr.afpa;
 
 import java.awt.*;
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
@@ -393,21 +394,21 @@ public class Application {
     }
 
     public static int calcDiagonale(int[][] arrays2D, int diagonalType) {
-        int rightLeftResult = 0;
-        int inverseResult = 0;
+        int result = 0;
 
         // TODO trouver une solution avec boucle WHILE pour ne pas avoir à créer "inverseResult"
 
-        for (int i = 0; i < arrays2D.length; i++) {
-            rightLeftResult += arrays2D[i][i];
-            inverseResult += arrays2D[arrays2D.length - 1 - i][i];
+        int i=0;
+        while (i<arrays2D.length){
+            if (diagonalType ==1){
+                result += arrays2D[i][i];
+            }else{
+                result += arrays2D[arrays2D.length - 1 - i][i];
+            }
+            i++;
         }
 
-        if (diagonalType == 1) {
-            return rightLeftResult;
-        } else {
-            return inverseResult;
-        }
+        return result;
 
     }
 
@@ -534,14 +535,64 @@ public class Application {
     }
 
     public static int binaireToBase(int n){
+        int result=0;
         String tabToConvert = Integer.toString(n);
         for (int i = 0; i < tabToConvert.length(); i++) {
-            if (Character.getNumericValue(tabToConvert.charAt(i)) == 1){
-
-            }else{
-
+            if (Character.getNumericValue(tabToConvert.charAt(i)) == 1) {
+                result += Math.pow(2, tabToConvert.length() - i -1);
+            }else {
+                result += Math.pow(0, tabToConvert.length() - i- 1);
             }
+        }
+        return result;
+    }
+
+    // TODO Revenir faire un jeux de test
+
+    public static int baseToBinary (int n){
+        int result =0;
+        int produit =1;
+
+        while (n>0){
+            result += n % 2 * produit;
+            produit = produit* 10;
+            n /= 2;
+
 
         }
+
+
+        return result;
     }
+    public static int[] fuseTabCroiss (int []array1, int []array2){
+
+        int [] tabConcat = new int [array1.length + array2.length];
+
+        for (int i = 0; i < array1.length; i++) {
+            tabConcat[i] = array1[i];
+        }
+            for (int j = 0; j < array2.length; j++) {
+                tabConcat[array1.length+j] = array2[j];
+            }
+        Arrays.sort(tabConcat);
+            return tabConcat;
+    }
+
+    public static boolean palindrome (String testPal){
+        boolean result =false;
+        String comparePal ="";
+
+        for (int i = testPal.length()-1; i >= 0 ; i--) {
+            comparePal = comparePal + testPal.charAt(i);
+        }
+        testPal = testPal.toLowerCase();
+        comparePal = comparePal.toLowerCase();
+        if (comparePal == testPal){
+            result = true;
+        }else{
+            result = false;
+        }
+        return result;
+    }
+
 }

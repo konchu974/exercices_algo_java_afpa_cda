@@ -153,9 +153,9 @@ class ApplicationTest {
                 {7, 11, 34, 1},
                 {28, 6, 2, 15},
                 {1, 2, 3, 19}
-        }, 0);
+        }, 1);
 
-        assertEquals(43, result);
+        assertEquals(36, result);
     }
 
     @Test
@@ -199,7 +199,29 @@ class ApplicationTest {
 
     }
 
+    @Test
+    void testBinaireToBaseFunction(){
+        int result = Application.binaireToBase(1101001);
+        assertEquals(105,result);
+    }
+
+    @Test
+    void testBaseToBinaryFunction(){
+        int result = Application.baseToBinary(64);
+        assertEquals(1000000 ,result);
+    }
 
 
+    @Test
+    void testFuseTabCroissFunction() {
+        int[] result = Application.fuseTabCroiss(new int[] {5, 8, 9}, new int[] {4, 7, 8});
+        assertArrayEquals(new int[] {4, 5, 7, 8, 8, 9}, result);
+    }
+
+    @Test
+    void testPalindromeFunction(){
+        boolean result = Application.palindrome("Mon nom");
+        assertEquals(true, result);
+    }
 
 }
