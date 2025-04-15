@@ -241,7 +241,7 @@ public class Application {
     }
 
     public static void afficherTab() {
-        double[] doubleArray = { 12.2, 11.3, 4.4, 2.0 };
+        double[] doubleArray = {12.2, 11.3, 4.4, 2.0};
 
         for (int i = 0; i < doubleArray.length; i++) {
             System.out.println(doubleArray[i]);
@@ -250,7 +250,7 @@ public class Application {
 
     public static int rechercheSeqFor(int value) {
         int findValue = 0;
-        int[] intArray = { 5, 6, 3, 12, 25 };
+        int[] intArray = {5, 6, 3, 12, 25};
         for (int i = 0; i < intArray.length; i++) {
             if (intArray[i] == value) {
                 findValue = intArray[i];
@@ -261,7 +261,7 @@ public class Application {
 
     public static int rechercheSeqWhile(int value) {
         int n = 0;
-        int[] intArray = { 5, 6, 3, 12, 25 };
+        int[] intArray = {5, 6, 3, 12, 25};
         while (intArray[n] != value) {
             n++;
         }
@@ -270,7 +270,7 @@ public class Application {
 
     public static int rechercheSeqDoWhile(int value) {
         int i = 0;
-        int[] intArray = { 5, 6, 3, 12, 25 };
+        int[] intArray = {5, 6, 3, 12, 25};
 
         do {
             i++;
@@ -281,7 +281,7 @@ public class Application {
 
     public static int sumBetween(int firstVal, int endVal) {
         int resultSum = 0;
-        int[] sumInTab = { 5, 12, 6, 1, 7, 8, 3 };
+        int[] sumInTab = {5, 12, 6, 1, 7, 8, 3};
 
         while (firstVal <= endVal) {
             resultSum += sumInTab[firstVal];
@@ -302,13 +302,13 @@ public class Application {
                 max = tabEntree[i];
             }
         }
-        int[] tabMinMax = { min, max };
+        int[] tabMinMax = {min, max};
         return tabMinMax;
     }
 
     public static boolean swap(int firstVal, int secondVal) {
         boolean validation = false;
-        int[] swapTab = { 4, 6, 2, 155 };
+        int[] swapTab = {4, 6, 2, 155};
 
         if (firstVal <= swapTab.length && secondVal <= swapTab.length) {
             int swap1 = swapTab[firstVal];
@@ -398,11 +398,11 @@ public class Application {
 
         // TODO trouver une solution avec boucle WHILE pour ne pas avoir à créer "inverseResult"
 
-        int i=0;
-        while (i<arrays2D.length){
-            if (diagonalType ==1){
+        int i = 0;
+        while (i < arrays2D.length) {
+            if (diagonalType == 1) {
                 result += arrays2D[i][i];
-            }else{
+            } else {
                 result += arrays2D[arrays2D.length - 1 - i][i];
             }
             i++;
@@ -506,14 +506,14 @@ public class Application {
         return reverseWord;
     }
 
-    public static String camelCase(String str){
+    public static String camelCase(String str) {
 
         for (int i = 0; i < str.length(); i++) {
 
-            if (String.valueOf(str.charAt(i)).matches("\\W")){
+            if (String.valueOf(str.charAt(i)).matches("\\W")) {
 
                 str = str.replaceFirst("\\W", "" + Character.toUpperCase(str.charAt(i + 1)));
-                str = str.substring(0, i+1) + str.substring(i + 2);
+                str = str.substring(0, i + 1) + str.substring(i + 2);
 
             }
 
@@ -522,26 +522,26 @@ public class Application {
         return str;
     }
 
-    public static int[] findChar(String chaineRef, String motATrouver){
+    public static int[] findChar(String chaineRef, String motATrouver) {
 
         int index2 = -1;
         int index1 = -1;
-        if (chaineRef.indexOf(motATrouver) !=-1) {
+        if (chaineRef.indexOf(motATrouver) != -1) {
             index2 = (chaineRef.indexOf(motATrouver));
-            index1 = (chaineRef.indexOf(motATrouver)+(motATrouver.length()-1));
+            index1 = (chaineRef.indexOf(motATrouver) + (motATrouver.length() - 1));
         }
-        int[] resultIndex = new int[] {index1, index2};
+        int[] resultIndex = new int[]{index1, index2};
         return resultIndex;
     }
 
-    public static int binaireToBase(int n){
-        int result=0;
+    public static int binaireToBase(int n) {
+        int result = 0;
         String tabToConvert = Integer.toString(n);
         for (int i = 0; i < tabToConvert.length(); i++) {
             if (Character.getNumericValue(tabToConvert.charAt(i)) == 1) {
-                result += Math.pow(2, tabToConvert.length() - i -1);
-            }else {
-                result += Math.pow(0, tabToConvert.length() - i- 1);
+                result += Math.pow(2, tabToConvert.length() - i - 1);
+            } else {
+                result += Math.pow(0, tabToConvert.length() - i - 1);
             }
         }
         return result;
@@ -549,13 +549,13 @@ public class Application {
 
     // TODO Revenir faire un jeux de test
 
-    public static int baseToBinary (int n){
-        int result =0;
-        int produit =1;
+    public static int baseToBinary(int n) {
+        int result = 0;
+        int produit = 1;
 
-        while (n>0){
+        while (n > 0) {
             result += n % 2 * produit;
-            produit = produit* 10;
+            produit = produit * 10;
             n /= 2;
 
 
@@ -564,35 +564,119 @@ public class Application {
 
         return result;
     }
-    public static int[] fuseTabCroiss (int []array1, int []array2){
 
-        int [] tabConcat = new int [array1.length + array2.length];
+    public static int[] fuseTabCroiss(int[] array1, int[] array2) {
+
+        int[] tabConcat = new int[array1.length + array2.length];
 
         for (int i = 0; i < array1.length; i++) {
             tabConcat[i] = array1[i];
         }
-            for (int j = 0; j < array2.length; j++) {
-                tabConcat[array1.length+j] = array2[j];
-            }
+        for (int j = 0; j < array2.length; j++) {
+            tabConcat[array1.length + j] = array2[j];
+        }
         Arrays.sort(tabConcat);
-            return tabConcat;
+        return tabConcat;
     }
 
-    public static boolean palindrome (String testPal){
-        boolean result =false;
-        String comparePal ="";
+    public static boolean palindrome(String testPal) {
+        testPal = testPal.replaceAll("[^a-zA-ZÀ-ÿ0-9_]+", "");
+        testPal = testPal.replaceAll("[éèêëÉÈÊË]", "e");
+        testPal = testPal.replaceAll("[àâÀÂ]", "a");
+        testPal = testPal.replaceAll("[îïÎÏ]", "i");
+        testPal = testPal.replaceAll("[ôöÔÖ]", "o");
+        testPal = testPal.replaceAll("[ûüÛÜ]", "u");
+        testPal = testPal.replaceAll("[çÇ]", "c");
+        testPal = testPal.replaceAll("[ÿŸ]", "y");
 
-        for (int i = testPal.length()-1; i >= 0 ; i--) {
+
+        String comparePal = "";
+        testPal = testPal.toLowerCase();
+
+        for (int i = testPal.length() - 1; i >= 0; i--) {
+
+
             comparePal = comparePal + testPal.charAt(i);
         }
-        testPal = testPal.toLowerCase();
-        comparePal = comparePal.toLowerCase();
-        if (comparePal.equals(testPal)){
-            result = true;
-        }else{
-            result = false;
-        }
-        return result;
+
+        return comparePal.equals(testPal);
     }
 
+    public static boolean luhnAlgo(int[] numCarte) {
+        int result = 0;
+
+
+        for (int i = numCarte.length - 1; i >= 0; i--) {
+            if (numCarte.length % 2 == 1) {
+                if (i % 2 == 1) {
+                    numCarte[i] *= 2;
+
+                    if (numCarte[i] > 9) {
+                        numCarte[i] = 1 + (numCarte[i] - 10);
+                    }
+                    result += numCarte[i];
+                } else {
+                    result += numCarte[i];
+                }
+            } else {
+                if (i % 2 == 0) {
+                    numCarte[i] *= 2;
+
+                    if (numCarte[i] > 9) {
+                        numCarte[i] = 1 + (numCarte[i] - 10);
+                    }
+                    result += numCarte[i];
+
+                } else {
+                    result += numCarte[i];
+                }
+            }
+        }
+        System.out.println(result);
+        return result % 10 == 0;
+    }
+
+    public static int[] gloutAlgo(int sommeARendre) {
+        int[] piece = {200, 100, 50, 20, 10, 5, 2, 1};
+        int[] nombrePieceRendu = new int[piece.length];
+        int result = 0;
+
+//        while(result<=sommeARendre){
+//            if (sommeARendre % 200 == 0){
+//                pieceRendu[0] += 1;
+//                result += pieceRendu[0];
+//            }else if(sommeARendre % 200 == 1 && sommeARendre % 100 == 0 ){
+//
+//            }
+//        }
+
+        for (int i = 0; i < piece.length; i++) {
+
+            while (result <= sommeARendre - piece[i]) {
+                nombrePieceRendu[i] += 1;
+                result += piece[i];
+
+            }
+
+        }
+        System.out.println(result);
+        return nombrePieceRendu;
+    }
+
+    public static int sommeRecursive(int[] tabEntier, int n) {
+        if (n <= tabEntier.length - 1) {
+            return tabEntier[n] + sommeRecursive(tabEntier, n + 1);
+        } else {
+            return 0;
+        }
+
+    }
+
+    public static String insertSymbol(String str, int n) {
+        if (n <= str.length() - 1) {
+            return "-" + str.charAt(n) + insertSymbol(str, n + 1);
+        } else {
+            return "-";
+        }
+    }
 }
