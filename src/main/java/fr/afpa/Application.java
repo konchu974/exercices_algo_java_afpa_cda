@@ -33,7 +33,6 @@ public class Application {
 
     }
 
-
     /**
      * Is adult.
      *
@@ -241,7 +240,7 @@ public class Application {
     }
 
     public static void afficherTab() {
-        double[] doubleArray = {12.2, 11.3, 4.4, 2.0};
+        double[] doubleArray = { 12.2, 11.3, 4.4, 2.0 };
 
         for (int i = 0; i < doubleArray.length; i++) {
             System.out.println(doubleArray[i]);
@@ -250,7 +249,7 @@ public class Application {
 
     public static int rechercheSeqFor(int value) {
         int findValue = 0;
-        int[] intArray = {5, 6, 3, 12, 25};
+        int[] intArray = { 5, 6, 3, 12, 25 };
         for (int i = 0; i < intArray.length; i++) {
             if (intArray[i] == value) {
                 findValue = intArray[i];
@@ -261,7 +260,7 @@ public class Application {
 
     public static int rechercheSeqWhile(int value) {
         int n = 0;
-        int[] intArray = {5, 6, 3, 12, 25};
+        int[] intArray = { 5, 6, 3, 12, 25 };
         while (intArray[n] != value) {
             n++;
         }
@@ -270,7 +269,7 @@ public class Application {
 
     public static int rechercheSeqDoWhile(int value) {
         int i = 0;
-        int[] intArray = {5, 6, 3, 12, 25};
+        int[] intArray = { 5, 6, 3, 12, 25 };
 
         do {
             i++;
@@ -281,7 +280,7 @@ public class Application {
 
     public static int sumBetween(int firstVal, int endVal) {
         int resultSum = 0;
-        int[] sumInTab = {5, 12, 6, 1, 7, 8, 3};
+        int[] sumInTab = { 5, 12, 6, 1, 7, 8, 3 };
 
         while (firstVal <= endVal) {
             resultSum += sumInTab[firstVal];
@@ -302,13 +301,13 @@ public class Application {
                 max = tabEntree[i];
             }
         }
-        int[] tabMinMax = {min, max};
+        int[] tabMinMax = { min, max };
         return tabMinMax;
     }
 
     public static boolean swap(int firstVal, int secondVal) {
         boolean validation = false;
-        int[] swapTab = {4, 6, 2, 155};
+        int[] swapTab = { 4, 6, 2, 155 };
 
         if (firstVal <= swapTab.length && secondVal <= swapTab.length) {
             int swap1 = swapTab[firstVal];
@@ -396,7 +395,8 @@ public class Application {
     public static int calcDiagonale(int[][] arrays2D, int diagonalType) {
         int result = 0;
 
-        // TODO trouver une solution avec boucle WHILE pour ne pas avoir à créer "inverseResult"
+        // TODO trouver une solution avec boucle WHILE pour ne pas avoir à créer
+        // "inverseResult"
 
         int i = 0;
         while (i < arrays2D.length) {
@@ -419,7 +419,6 @@ public class Application {
             if (i < niveau) {
                 System.out.println(triangle.repeat(i));
             } else if (i >= niveau) {
-
                 System.out.println(triangle.repeat(2 * niveau - i));
             }
 
@@ -477,17 +476,15 @@ public class Application {
         return compteur;
     }
 
+    // ✅ Checked!
     public static int countMaj(String str) {
         int compteur = 0;
 
         for (int i = 0; i < str.length(); i++) {
             if (Character.isUpperCase(str.charAt(i))) {
-
                 compteur++;
-
             }
         }
-
         System.out.println("Il y a " + compteur + " Majuscule au total dans le String: " + str);
         return compteur;
     }
@@ -498,6 +495,7 @@ public class Application {
         return str;
     }
 
+    // ✅ Okay!
     public static String reverseString(String str) {
         String reverseWord = "";
         for (int i = str.length() - 1; i >= 0; i--) {
@@ -514,26 +512,25 @@ public class Application {
 
                 str = str.replaceFirst("\\W", "" + Character.toUpperCase(str.charAt(i + 1)));
                 str = str.substring(0, i + 1) + str.substring(i + 2);
-
             }
-
         }
-
         return str;
     }
 
     public static int[] findChar(String chaineRef, String motATrouver) {
-
         int index2 = -1;
         int index1 = -1;
+        // TODO est-il trouver une solution uniquement basée sur des boucles sans se
+        // servir de "indexOf"
         if (chaineRef.indexOf(motATrouver) != -1) {
             index2 = (chaineRef.indexOf(motATrouver));
             index1 = (chaineRef.indexOf(motATrouver) + (motATrouver.length() - 1));
         }
-        int[] resultIndex = new int[]{index1, index2};
+        int[] resultIndex = new int[] { index1, index2 };
         return resultIndex;
     }
 
+    // ✅ Well done!
     public static int binaireToBase(int n) {
         int result = 0;
         String tabToConvert = Integer.toString(n);
@@ -558,13 +555,12 @@ public class Application {
             produit = produit * 10;
             n /= 2;
 
-
         }
-
 
         return result;
     }
 
+    // TODO ajouter Javadoc
     public static int[] fuseTabCroiss(int[] array1, int[] array2) {
 
         int[] tabConcat = new int[array1.length + array2.length];
@@ -572,13 +568,19 @@ public class Application {
         for (int i = 0; i < array1.length; i++) {
             tabConcat[i] = array1[i];
         }
+
         for (int j = 0; j < array2.length; j++) {
             tabConcat[array1.length + j] = array2[j];
         }
+
+        // TODO serait-il possible d'imaginer une solution algorithmique uniquement
+        // uniquement basée sur des boucles, des comparaisons et des indexes pour éviter
+        // le "sort" ?
         Arrays.sort(tabConcat);
         return tabConcat;
     }
 
+    // TODO ajouter commentaires Javadoc
     public static boolean palindrome(String testPal) {
         testPal = testPal.replaceAll("[^a-zA-ZÀ-ÿ0-9_]+", "");
         testPal = testPal.replaceAll("[éèêëÉÈÊË]", "e");
@@ -589,22 +591,29 @@ public class Application {
         testPal = testPal.replaceAll("[çÇ]", "c");
         testPal = testPal.replaceAll("[ÿŸ]", "y");
 
-
+        // ✅ ok solution avec création d'une nouvelle string
         String comparePal = "";
         testPal = testPal.toLowerCase();
 
         for (int i = testPal.length() - 1; i >= 0; i--) {
 
-
+            // TODO pour aider à la création dynamique de String tu peux certes utiliser la
+            // concaténation comme proposée
+            // tu peux égaleement construire des strings dynamique en utilisant
+            // https://www.ionos.fr/digitalguide/sites-internet/developpement-web/stringbuilder-en-java/
             comparePal = comparePal + testPal.charAt(i);
         }
+
+        // TODO serait-il possible d'imaginer une solution basée uniquement sur
+        // l'utilisation 2 indexes et de boucles
+        // intérêt : ne pas avoir à recréer de String
 
         return comparePal.equals(testPal);
     }
 
+    // TODO ajouter commentaire en Javadoc pour détailler l'objectif de la fonction
     public static boolean luhnAlgo(int[] numCarte) {
         int result = 0;
-
 
         for (int i = numCarte.length - 1; i >= 0; i--) {
             if (numCarte.length % 2 == 1) {
@@ -614,6 +623,9 @@ public class Application {
                     if (numCarte[i] > 9) {
                         numCarte[i] = 1 + (numCarte[i] - 10);
                     }
+
+                    // TODO la ligne result += numCarte[i]; semble être faite dans tous les cas
+                    // serait il possible de la sortir du if ?
                     result += numCarte[i];
                 } else {
                     result += numCarte[i];
@@ -625,6 +637,7 @@ public class Application {
                     if (numCarte[i] > 9) {
                         numCarte[i] = 1 + (numCarte[i] - 10);
                     }
+                    // TODO même remarque que précedemment
                     result += numCarte[i];
 
                 } else {
@@ -636,34 +649,45 @@ public class Application {
         return result % 10 == 0;
     }
 
+    // TODO ajouter commentaire en "javadoc"
     public static int[] gloutAlgo(int sommeARendre) {
-        int[] piece = {200, 100, 50, 20, 10, 5, 2, 1};
+
+        int[] piece = { 200, 100, 50, 20, 10, 5, 2, 1 };
         int[] nombrePieceRendu = new int[piece.length];
+
+        // TODO tout paramètre est une variable qui répond aux même règles qu'une
+        // variable locale
+        // ainsi, il est possible d'utiliser l'opérateur d'affectation avec
+        // "sommeARendre" et ainsi modifier sa valeur, par exemple :
+        // sommeARendre = sommeARendre - piece[i]
+        // (ou sommeARendre -= piece[i])
+        //
+        // sachant ceci, existerait-il une solution sans utiliser la variable result ?
+        // autre conseil : éviter de mixer les langues pour les noms de variables
         int result = 0;
 
-//        while(result<=sommeARendre){
-//            if (sommeARendre % 200 == 0){
-//                pieceRendu[0] += 1;
-//                result += pieceRendu[0];
-//            }else if(sommeARendre % 200 == 1 && sommeARendre % 100 == 0 ){
-//
-//            }
-//        }
+        // while(result<=sommeARendre){
+        // if (sommeARendre % 200 == 0){
+        // pieceRendu[0] += 1;
+        // result += pieceRendu[0];
+        // }else if(sommeARendre % 200 == 1 && sommeARendre % 100 == 0 ){
+        //
+        // }
+        // }
 
         for (int i = 0; i < piece.length; i++) {
-
             while (result <= sommeARendre - piece[i]) {
                 nombrePieceRendu[i] += 1;
                 result += piece[i];
-
             }
-
         }
         System.out.println(result);
         return nombrePieceRendu;
     }
 
+    // TODO ajouter commentaire javadoc
     public static int sommeRecursive(int[] tabEntier, int n) {
+        // 🔥 Vive le récursif !
         if (n <= tabEntier.length - 1) {
             return tabEntier[n] + sommeRecursive(tabEntier, n + 1);
         } else {

@@ -219,6 +219,7 @@ class ApplicationTest {
 
     @Test
     void testPalindromeFunction() {
+        // probablement le palindrome le plus long du monde
         boolean result = Application.palindrome("Are we not pure? 'No, sir!' Panama's moody Noriega brags. 'It is garbage!' Irony dooms a man—a prisoner up to new era.");
         assertEquals(true, result);
     }
