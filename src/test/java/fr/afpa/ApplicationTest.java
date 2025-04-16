@@ -190,7 +190,7 @@ class ApplicationTest {
     @Test
     void testFindCharResultFunction() {
         int[] result1 = Application.findChar("Mon nom est Personne.", "Personne");
-        assertArrayEquals(new int[]{19, 12}, result1);
+        assertArrayEquals(new int[]{12, 19}, result1);
 
         int[] result2 = Application.findChar("Il n'y a rien par ici", "pas");
         assertArrayEquals(new int[]{-1, -1}, result2);
@@ -206,8 +206,11 @@ class ApplicationTest {
 
     @Test
     void testBaseToBinaryFunction() {
-        int result = Application.baseToBinary(64);
-        assertEquals(1000000, result);
+        int result = Application.baseToBinary(34);
+        assertEquals(100010, result);
+
+        int result1 = Application.baseToBinary(125);
+        assertEquals(1111101, result1);
     }
 
 

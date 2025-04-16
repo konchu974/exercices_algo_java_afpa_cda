@@ -34,9 +34,9 @@ public class Application {
     }
 
     /**
-     * Is adult.
+     * verifie si une personne est majeur ou non avec son année de naissance
      *
-     * @param birthYear the birth year
+     * @param birthYear l'anné de naissance
      * @return
      */
     public static String isAdult(int birthYear) {
@@ -49,7 +49,7 @@ public class Application {
     }
 
     /**
-     * Find max min.
+     * Trouver le min et le max entre trois variable
      *
      * @param var1 the var 1
      * @param var2 the var 2
@@ -84,9 +84,9 @@ public class Application {
     }
 
     /**
-     * Voyelle ou consonne.
+     * fonction qui cherche si le charactere est une Voyelle ou une consonne.
      *
-     * @param letter the letter
+     * @param letter verification de si c'est une voyelle ou une consonne
      */
     public static void voyelleOuConsonne(char letter) {
         // a, e, i, o, u, y
@@ -240,7 +240,7 @@ public class Application {
     }
 
     public static void afficherTab() {
-        double[] doubleArray = { 12.2, 11.3, 4.4, 2.0 };
+        double[] doubleArray = {12.2, 11.3, 4.4, 2.0};
 
         for (int i = 0; i < doubleArray.length; i++) {
             System.out.println(doubleArray[i]);
@@ -249,7 +249,7 @@ public class Application {
 
     public static int rechercheSeqFor(int value) {
         int findValue = 0;
-        int[] intArray = { 5, 6, 3, 12, 25 };
+        int[] intArray = {5, 6, 3, 12, 25};
         for (int i = 0; i < intArray.length; i++) {
             if (intArray[i] == value) {
                 findValue = intArray[i];
@@ -260,7 +260,7 @@ public class Application {
 
     public static int rechercheSeqWhile(int value) {
         int n = 0;
-        int[] intArray = { 5, 6, 3, 12, 25 };
+        int[] intArray = {5, 6, 3, 12, 25};
         while (intArray[n] != value) {
             n++;
         }
@@ -269,7 +269,7 @@ public class Application {
 
     public static int rechercheSeqDoWhile(int value) {
         int i = 0;
-        int[] intArray = { 5, 6, 3, 12, 25 };
+        int[] intArray = {5, 6, 3, 12, 25};
 
         do {
             i++;
@@ -280,7 +280,7 @@ public class Application {
 
     public static int sumBetween(int firstVal, int endVal) {
         int resultSum = 0;
-        int[] sumInTab = { 5, 12, 6, 1, 7, 8, 3 };
+        int[] sumInTab = {5, 12, 6, 1, 7, 8, 3};
 
         while (firstVal <= endVal) {
             resultSum += sumInTab[firstVal];
@@ -301,13 +301,13 @@ public class Application {
                 max = tabEntree[i];
             }
         }
-        int[] tabMinMax = { min, max };
+        int[] tabMinMax = {min, max};
         return tabMinMax;
     }
 
     public static boolean swap(int firstVal, int secondVal) {
         boolean validation = false;
-        int[] swapTab = { 4, 6, 2, 155 };
+        int[] swapTab = {4, 6, 2, 155};
 
         if (firstVal <= swapTab.length && secondVal <= swapTab.length) {
             int swap1 = swapTab[firstVal];
@@ -394,9 +394,6 @@ public class Application {
 
     public static int calcDiagonale(int[][] arrays2D, int diagonalType) {
         int result = 0;
-
-        // TODO trouver une solution avec boucle WHILE pour ne pas avoir à créer
-        // "inverseResult"
 
         int i = 0;
         while (i < arrays2D.length) {
@@ -517,17 +514,38 @@ public class Application {
         return str;
     }
 
+    /**
+     * function pour trouver ou est la position du premier charactere d'un mot et le dernier dans une phrase
+     *
+     * @param chaineRef   chaine de charactere de reference
+     * @param motATrouver mot que l'on doit chercher dans {@code chaineRef}
+     * @return un tableau avec l'index du premier et du dernier charactere du mots a trouver
+     */
     public static int[] findChar(String chaineRef, String motATrouver) {
-        int index2 = -1;
-        int index1 = -1;
         // TODO est-il trouver une solution uniquement basée sur des boucles sans se
         // servir de "indexOf"
-        if (chaineRef.indexOf(motATrouver) != -1) {
-            index2 = (chaineRef.indexOf(motATrouver));
-            index1 = (chaineRef.indexOf(motATrouver) + (motATrouver.length() - 1));
+
+
+        //Je me suis fait aider de mon ami l'I.A pour celui la...
+
+        int index1 = -1;
+        int index2 = -1;
+
+        for (int i = 0; i <= chaineRef.length() - motATrouver.length(); i++) {
+            int j = 0;
+
+            //Pour la condition du while
+            while (j < motATrouver.length() && chaineRef.charAt(i + j) == motATrouver.charAt(j)) {
+                j++;
+            }
+            if (j == motATrouver.length()) {
+                index1 = i;
+                index2 = i + j - 1;
+                break;
+            }
         }
-        int[] resultIndex = new int[] { index1, index2 };
-        return resultIndex;
+
+        return new int[]{index1, index2};
     }
 
     // ✅ Well done!
@@ -561,26 +579,58 @@ public class Application {
     }
 
     // TODO ajouter Javadoc
+
+    /**
+     * Fusionne deux tableaux triés en ordre croissant en un seul tableau trié en ordre croissant.
+     *
+     * @param array1 le premier tableau trié en ordre croissant
+     * @param array2 le deuxième tableau trié en ordre croissant
+     * @return un nouveau tableau contenant tous les éléments de {@code array1} et {@code array2}, triés en ordre croissant
+     */
     public static int[] fuseTabCroiss(int[] array1, int[] array2) {
 
         int[] tabConcat = new int[array1.length + array2.length];
+        int i = 0;
+        int j = 0;
+        int k = 0;
 
-        for (int i = 0; i < array1.length; i++) {
-            tabConcat[i] = array1[i];
+        while (i < array1.length && j < array2.length) {
+            if (array1[i] < array2[j]) {
+                tabConcat[k] = array1[i++];
+                k++;
+            } else {
+                tabConcat[k] = array2[j++];
+                k++;
+            }
         }
 
-        for (int j = 0; j < array2.length; j++) {
-            tabConcat[array1.length + j] = array2[j];
+        while (i < array1.length) {
+            tabConcat[k] = array1[i++];
+            k++;
         }
+
+        while (j < array2.length) {
+            tabConcat[k] = array2[j++];
+            k++;
+        }
+
 
         // TODO serait-il possible d'imaginer une solution algorithmique uniquement
         // uniquement basée sur des boucles, des comparaisons et des indexes pour éviter
         // le "sort" ?
-        Arrays.sort(tabConcat);
+
         return tabConcat;
     }
 
     // TODO ajouter commentaires Javadoc
+
+    /**
+     * Vérifie si le texte donné est un palindrome.
+     * Un palindrome est un mot ou une phrase qui se lit de la même façon à l'endroit et à l'envers.
+     *
+     * @param testPal Le texte à analyser pour savoir s'il est un palindrome.
+     * @return true si le texte est un palindrome, false sinon.
+     */
     public static boolean palindrome(String testPal) {
         testPal = testPal.replaceAll("[^a-zA-ZÀ-ÿ0-9_]+", "");
         testPal = testPal.replaceAll("[éèêëÉÈÊË]", "e");
@@ -592,28 +642,40 @@ public class Application {
         testPal = testPal.replaceAll("[ÿŸ]", "y");
 
         // ✅ ok solution avec création d'une nouvelle string
-        String comparePal = "";
         testPal = testPal.toLowerCase();
-
-        for (int i = testPal.length() - 1; i >= 0; i--) {
-
-            // TODO pour aider à la création dynamique de String tu peux certes utiliser la
-            // concaténation comme proposée
-            // tu peux égaleement construire des strings dynamique en utilisant
-            // https://www.ionos.fr/digitalguide/sites-internet/developpement-web/stringbuilder-en-java/
-            comparePal = comparePal + testPal.charAt(i);
+        int j = 0;
+        int i = testPal.length() - 1;
+        while (i > j) {
+            if (testPal.charAt(i) != testPal.charAt(j)) {
+                return false;
+            }
+            i--;
+            j++;
         }
+
+        return true;
+
+
+        // TODO pour aider à la création dynamique de String tu peux certes utiliser la
+        // concaténation comme proposée
+        // tu peux également construire des strings dynamique en utilisant
+        // https://www.ionos.fr/digitalguide/sites-internet/developpement-web/stringbuilder-en-java/
 
         // TODO serait-il possible d'imaginer une solution basée uniquement sur
         // l'utilisation 2 indexes et de boucles
         // intérêt : ne pas avoir à recréer de String
 
-        return comparePal.equals(testPal);
     }
 
     // TODO ajouter commentaire en Javadoc pour détailler l'objectif de la fonction
+
+    /**
+     * algorithme permettant de verifier si un numero de carte bleu est valide
+     *
+     * @param numCarte numero de carte à entrer dans un tableau pour validation de celle-ci
+     * @return true si la carte est valide
+     */
     public static boolean luhnAlgo(int[] numCarte) {
-        int result = 0;
 
         for (int i = numCarte.length - 1; i >= 0; i--) {
             if (numCarte.length % 2 == 1) {
@@ -626,10 +688,9 @@ public class Application {
 
                     // TODO la ligne result += numCarte[i]; semble être faite dans tous les cas
                     // serait il possible de la sortir du if ?
-                    result += numCarte[i];
-                } else {
-                    result += numCarte[i];
+
                 }
+                numCarte[i] += numCarte[i];
             } else {
                 if (i % 2 == 0) {
                     numCarte[i] *= 2;
@@ -638,21 +699,25 @@ public class Application {
                         numCarte[i] = 1 + (numCarte[i] - 10);
                     }
                     // TODO même remarque que précedemment
-                    result += numCarte[i];
-
-                } else {
-                    result += numCarte[i];
                 }
+                numCarte[i] += numCarte[i];
             }
         }
-        System.out.println(result);
-        return result % 10 == 0;
+        System.out.println(Arrays.stream(numCarte).sum());
+        return Arrays.stream(numCarte).sum() % 10 == 0;
     }
 
     // TODO ajouter commentaire en "javadoc"
+
+    /**
+     * function permettant de repartir au mieux le nombre de pièces necessaire pour rendre la rendre la monnaie
+     *
+     * @param sommeARendre valeur pour laquel on va chercher le rendu de monnaie optimal
+     * @return un tableau avec le nombre de pièces utilisées
+     */
     public static int[] gloutAlgo(int sommeARendre) {
 
-        int[] piece = { 200, 100, 50, 20, 10, 5, 2, 1 };
+        int[] piece = {200, 100, 50, 20, 10, 5, 2, 1};
         int[] nombrePieceRendu = new int[piece.length];
 
         // TODO tout paramètre est une variable qui répond aux même règles qu'une
@@ -664,28 +729,21 @@ public class Application {
         //
         // sachant ceci, existerait-il une solution sans utiliser la variable result ?
         // autre conseil : éviter de mixer les langues pour les noms de variables
-        int result = 0;
-
-        // while(result<=sommeARendre){
-        // if (sommeARendre % 200 == 0){
-        // pieceRendu[0] += 1;
-        // result += pieceRendu[0];
-        // }else if(sommeARendre % 200 == 1 && sommeARendre % 100 == 0 ){
-        //
-        // }
-        // }
-
         for (int i = 0; i < piece.length; i++) {
-            while (result <= sommeARendre - piece[i]) {
+            while (sommeARendre >= piece[i]) {
                 nombrePieceRendu[i] += 1;
-                result += piece[i];
+                sommeARendre -= piece[i];
             }
         }
-        System.out.println(result);
+
         return nombrePieceRendu;
     }
 
-    // TODO ajouter commentaire javadoc
+    /**
+     * @param tabEntier tableau de int à additionner
+     * @param n         parametre qui évolue au fur et à mesure de la fonction
+     * @return le resultat de la somme du tableau
+     */
     public static int sommeRecursive(int[] tabEntier, int n) {
         // 🔥 Vive le récursif !
         if (n <= tabEntier.length - 1) {
