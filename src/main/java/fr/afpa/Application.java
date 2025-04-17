@@ -176,11 +176,12 @@ public class Application {
     }
 
     /**
-     * Effectue la somme de 2 entiers
+     * fonction de speculation d'abonnés
      *
-     * @param a premier entier
-     * @param b deuxième entier
-     * @return résultat de la somme
+     * @param subscriber nombres d'abonnés de base
+     * @param mois       nombre de mois pour la speculation d'abonnés
+     * @param coeff      multiplicateur d'abonnés au mois
+     * @return résultat de la spéculation
      */
 
     public static int subYoutubeFor(int subscriber, int mois, double coeff) {
@@ -526,7 +527,7 @@ public class Application {
         // servir de "indexOf"
 
 
-        //Je me suis fait aider de mon ami l'I.A pour celui la...
+        //Je me suis fait aider par mon ami l'I.A pour celui la...
 
         int index1 = -1;
         int index2 = -1;
