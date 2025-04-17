@@ -247,8 +247,33 @@ class ApplicationTest {
 
     @Test
     void testInsertSymbolFunction() {
-        String result = Application.insertSymbol("helloworld", 0);
-        assertEquals("-h-e-l-l-o-w-o-r-l-d-", result);
+        String result = Application.insertSymbol("hello", 0);
+        assertEquals("h-e-l-l-o", result);
+    }
+
+    @Test
+    void testInsertionSortFunction() {
+        int[] result = Application.insertionSort(new int[]{15, 9, 4, 11, 8, 10, 6, 13, 2, 1, 12, 7, 16, 14, 5, 3});
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}, result);
+    }
+
+    @Test
+    void testBubbleSortFunction() {
+        int[] result = Application.bubbleSort(new int[]{15, 9, 4, 11, 8, 10, 6, 13, 2, 1, 12, 7, 16, 14, 5, 3});
+        assertArrayEquals(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16}, result);
+    }
+
+    @Test
+    void testCombSortFunction() {
+        int[] result = Application.combSort(new int[]{8, 4, 1, 56, 3, -44, 23, -6, 28, 0});
+        assertArrayEquals(new int[]{-44, -6, 0, 1, 3, 4, 8, 23, 28, 56}, result);
+    }
+
+    @Test
+    void testDichotoSearchFunction() {
+        int result = Application.dichotoSearch(new int[]{8, 12, 14, 19, 21, 22, 24, 32, 53}, 19
+        ç_);
+        assertEquals(3, result);
     }
 
 }

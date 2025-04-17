@@ -1,5 +1,6 @@
 package fr.afpa;
 
+import javax.xml.transform.sax.SAXSource;
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Locale;
@@ -516,7 +517,7 @@ public class Application {
     }
 
     /**
-     * function pour trouver ou est la position du premier charactere d'un mot et le dernier dans une phrase
+     * fonction pour trouver ou est la position du premier charactere d'un mot et le dernier dans une phrase
      *
      * @param chaineRef   chaine de charactere de reference
      * @param motATrouver mot que l'on doit chercher dans {@code chaineRef}
@@ -755,11 +756,113 @@ public class Application {
 
     }
 
+    /**
+     * @param str
+     * @param n
+     * @return
+     */
     public static String insertSymbol(String str, int n) {
-        if (n <= str.length() - 1) {
-            return "-" + str.charAt(n) + insertSymbol(str, n + 1);
+        if (n < str.length() - 1) {
+            return str.charAt(n) + "-" + insertSymbol(str, n + 1);
+        } else if (n < str.length()) {
+            return str.charAt(n) + "";
         } else {
-            return "-";
+            return "";
         }
     }
+
+    public static int[] insertionSort(int[] tabToSort) {
+        int memory = 0;
+        for (int i = 0; i < tabToSort.length; i++) {
+            int k = 0;
+            memory = tabToSort[i];
+            for (int j = i; j >= 0; j--) {
+                if (memory < tabToSort[j]) {
+
+                    tabToSort[i - k] = tabToSort[j];
+                    tabToSort[j] = memory;
+                    k++;
+
+
+                }
+            }
+        }
+        return tabToSort;
+    }
+
+    public static int[] bubbleSort(int[] tabToSort) {
+        int memory = 0;
+        for (int i = tabToSort.length; i >= 0; i--) {
+            for (int j = 0; j < i - 1; j++) {
+                if (tabToSort[j] > tabToSort[j + 1]) {
+                    memory = tabToSort[j];
+                    tabToSort[j] = tabToSort[j + 1];
+                    tabToSort[j + 1] = memory;
+                }
+            }
+        }
+        return tabToSort;
+    }
+
+    public static int[] combSort(int[] tabToSort) {
+        int memory = 0;
+        int gap = tabToSort.length;
+
+        for (int i = 0; i < tabToSort.length; i++) {
+            for (int j = 0; gap + j < tabToSort.length; j++) {
+                if (tabToSort[j] > tabToSort[gap + j]) {
+                    memory = tabToSort[gap + j];
+                    tabToSort[gap + j] = tabToSort[j];
+                    tabToSort[j] = memory;
+                }
+
+            }
+            gap /= 1.3;
+        }
+        return tabToSort;
+    }
+
+    public static int dichotoSearch(int[] tabToSearch, int valueToFind) {
+        tabToSearch = Application.bubbleSort(tabToSearch);
+
+        int leftTab = 0;
+        int rightTab = tabToSearch.length - 1;
+
+        boolean find = false;
+
+        while (find == false) {
+            int centerTab = (rightTab + leftTab) / 2;
+            if (valueToFind == tabToSearch[centerTab]) {
+                System.out.println(tabToSearch[centerTab]);
+                return centerTab;
+
+            } else if (tabToSearch[centerTab] > valueToFind) {
+                rightTab = centerTab - 1;
+
+            } else if (tabToSearch[centerTab] < valueToFind) {
+                leftTab = centerTab + 1;
+
+            }
+
+//        while (leftTab != rightTab || rightTab - 1 != leftTab || tabToSearch[centerTab] != valueToFind) {
+//
+//
+//            if (valueToFind > tabToSearch[centerTab]) {
+//                rightTab = centerTab - 1;
+//
+//            } else if (valueToFind < tabToSearch[centerTab]) {
+//                leftTab = centerTab + 1;
+//            }
+//            if (leftTab == rightTab - 1) {
+//                centerTab = leftTab;
+//            }
+//
+//            if ( tabToSearch[centerTab]== valueToFind) {
+//                return centerTab;
+//            }
+//        }
+        }
+        return -1;
+    }
+
 }
