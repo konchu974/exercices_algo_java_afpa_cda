@@ -271,9 +271,14 @@ class ApplicationTest {
 
     @Test
     void testDichotoSearchFunction() {
-        int result = Application.dichotoSearch(new int[]{8, 12, 14, 19, 21, 22, 24, 32, 53}, 19
-        ç_);
+        int result = Application.dichotoSearch(new int[]{8, 12, 14, 19, 21, 22, 24, 32, 53}, 19);
         assertEquals(3, result);
+    }
+
+    @Test
+    void testInsertSymbolFunction() {
+        String result = Application.insertSymbol("hello", 0);
+        assertEquals("h-e-l-l-o", result);
     }
 
 }

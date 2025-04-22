@@ -12,11 +12,7 @@ import java.util.Scanner;
  */
 public class Application {
 
-    /**
-     * The entry point of application.
-     *
-     * @param args the input arguments
-     */
+
     public static void main(String[] args) {
 
         // -------------- Exercice 3.4------------------------------------------
@@ -30,7 +26,9 @@ public class Application {
         // manipTab();
 
         // -------------- Exercice 8------------------------------------------
-        plusOuMoins();
+//        plusOuMoins();
+
+        gameLogic(1234);
 
     }
 
@@ -771,6 +769,13 @@ public class Application {
         }
     }
 
+
+    /**
+     * ----------------------FIN DE CORRECTION DE LUDOVIC------------
+     * Test unitaire dans ../test/java/fr.afpa/ApplicationTest.java
+     **/
+
+
     public static int[] insertionSort(int[] tabToSort) {
         int memory = 0;
         for (int i = 0; i < tabToSort.length; i++) {
@@ -830,10 +835,11 @@ public class Application {
 
         boolean find = false;
 
-        while (find == false) {
+        while (leftTab <= rightTab) {
             int centerTab = (rightTab + leftTab) / 2;
             if (valueToFind == tabToSearch[centerTab]) {
                 System.out.println(tabToSearch[centerTab]);
+                find = true;
                 return centerTab;
 
             } else if (tabToSearch[centerTab] > valueToFind) {
@@ -843,26 +849,81 @@ public class Application {
                 leftTab = centerTab + 1;
 
             }
-
-//        while (leftTab != rightTab || rightTab - 1 != leftTab || tabToSearch[centerTab] != valueToFind) {
-//
-//
-//            if (valueToFind > tabToSearch[centerTab]) {
-//                rightTab = centerTab - 1;
-//
-//            } else if (valueToFind < tabToSearch[centerTab]) {
-//                leftTab = centerTab + 1;
-//            }
-//            if (leftTab == rightTab - 1) {
-//                centerTab = leftTab;
-//            }
-//
-//            if ( tabToSearch[centerTab]== valueToFind) {
-//                return centerTab;
-//            }
-//        }
         }
         return -1;
+    }
+
+
+    //    public static String ceasarCode(String str, int shiftValue, String shiftDirection) {
+//        String alphabet = "abcefghijklmnopqrstuvwxyz";
+//        String wordFind = "";
+//
+//        for (int i = 0; i < str.length(); i++) {
+//            for (int j = 0; j < alphabet.length(); j++) {
+//                if (alphabet.charAt(j) == str.charAt(i)) {
+//                    wordFind += alphabet.charAt(j + shiftValue);
+//                }
+//            }
+//        }
+//
+//        return wordFind;
+//    }
+    public static void gameLogic(int valuToFind) {
+        int[] tabToFind = intIntoTab(valuToFind);
+
+        int nbTry = 12;
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("la combinaison caché est composé de " + tabToFind.length + " chiffres. Trouver la combinaisont, vous avez " + nbTry + " chances.");
+
+
+        while (nbTry > 0) {
+            System.out.print("Entrez votre proposition : ");
+            int nbGuess = scanner.nextInt();
+            int[] tabGuess = intIntoTab(nbGuess);
+
+
+            int equal = 0;
+            int contain = 0;
+
+            for (int i = 0; i < tabToFind.length; i++) {
+                if (tabGuess[i] == tabToFind[i]) {
+                    equal++;
+                    break;
+                }
+
+                for (int j = 0; j < tabGuess.length; j++) {
+                    if (tabGuess[j] == tabToFind[i] && tabGuess[i] != tabToFind[i]) {
+                        contain++;
+                        break;
+                    }
+                }
+
+            }
+
+            if (tabGuess != tabToFind) {
+                nbTry--;
+                System.out.println("il y a " + equal + " chiffres au bon endroit et " + contain +
+                        " chiffres qui sont bon mais au mauvaise endroit. \nIl vous restes " + nbTry + " chances.");
+            } else {
+                System.out.println("Bravo");
+                return;
+            }
+        }
+
+
+    }
+
+    public static int[] intIntoTab(int valueToCOnvert) {
+        String nombreStr = String.valueOf(valueToCOnvert);
+        int[] tabConvert = new int[nombreStr.length()];
+
+        for (int i = 0; i < nombreStr.length(); i++) {
+            tabConvert[i] = Character.getNumericValue(nombreStr.charAt(i));
+        }
+        return tabConvert;
+
     }
 
 }
