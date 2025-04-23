@@ -890,19 +890,17 @@ public class Application {
             for (int i = 0; i < tabToFind.length; i++) {
                 if (tabGuess[i] == tabToFind[i]) {
                     equal++;
-                    break;
                 }
 
                 for (int j = 0; j < tabGuess.length; j++) {
                     if (tabGuess[j] == tabToFind[i] && tabGuess[i] != tabToFind[i]) {
                         contain++;
-                        break;
                     }
                 }
 
             }
 
-            if (tabGuess != tabToFind) {
+            if (!Arrays.equals(tabGuess, tabToFind)) {
                 nbTry--;
                 System.out.println("il y a " + equal + " chiffres au bon endroit et " + contain +
                         " chiffres qui sont bon mais au mauvaise endroit. \nIl vous restes " + nbTry + " chances.");
