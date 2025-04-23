@@ -1,9 +1,6 @@
 package fr.afpa;
 
-import javax.xml.transform.sax.SAXSource;
-import java.awt.*;
 import java.util.Arrays;
-import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -28,7 +25,7 @@ public class Application {
         // -------------- Exercice 8------------------------------------------
 //        plusOuMoins();
 
-        gameLogic(1234);
+        gameLogic();
 
     }
 
@@ -868,14 +865,19 @@ public class Application {
 //
 //        return wordFind;
 //    }
-    public static void gameLogic(int valuToFind) {
+    public static void gameLogic() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Entrez votre code à 4 chiffres que vous voulez faire deviner:");
+        int valuToFind = scanner.nextInt();
+
+
         int[] tabToFind = intIntoTab(valuToFind);
 
         int nbTry = 12;
 
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("la combinaison caché est composé de " + tabToFind.length + " chiffres. Trouver la combinaisont, vous avez " + nbTry + " chances.");
+        System.out.println("la combinaison caché est composé de " + tabToFind.length + " chiffres. Trouvez la combinaisont, vous avez " + nbTry + " chances.");
 
 
         while (nbTry > 0) {
@@ -887,18 +889,30 @@ public class Application {
             int equal = 0;
             int contain = 0;
 
+
+            boolean[] keyToFind = new boolean[tabToFind.length];
+            boolean[] keyGuess = new boolean[tabGuess.length];
+
+
             for (int i = 0; i < tabToFind.length; i++) {
                 if (tabGuess[i] == tabToFind[i]) {
                     equal++;
+                    keyToFind[i] = true;
+                    keyGuess[i] = true;
                 }
+            }
 
-                for (int j = 0; j < tabGuess.length; j++) {
-                    if (tabGuess[j] == tabToFind[i] && tabGuess[i] != tabToFind[i]) {
+            for (int i = 0; i < tabGuess.length; i++) {
+                if (keyGuess[i]) continue;
+                for (int j = 0; j < tabToFind.length; j++) {
+                    if (!keyToFind[j] && tabGuess[i] == tabToFind[j]) {
                         contain++;
+                        keyToFind[j] = true;
+                        break;
                     }
                 }
-
             }
+
 
             if (!Arrays.equals(tabGuess, tabToFind)) {
                 nbTry--;
@@ -906,9 +920,11 @@ public class Application {
                         " chiffres qui sont bon mais au mauvaise endroit. \nIl vous restes " + nbTry + " chances.");
             } else {
                 System.out.println("Bravo");
+                scanner.close();
                 return;
             }
         }
+        scanner.close();
 
 
     }
